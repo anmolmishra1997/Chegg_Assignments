@@ -1,0 +1,81 @@
+CREATE TABLE AUTHOR 
+(AuthorNum DECIMAL(2,0),
+AuthorLast CHAR(12),
+AuthorFirst CHAR(10),
+CONSTRAINT 		AUTHOR_PK 		PRIMARY KEY(AuthorNum) )
+;
+
+
+CREATE TABLE BRANCH 
+(BranchNum DECIMAL(2,0),
+BranchName CHAR(50),
+BranchLocation CHAR(50), 
+CONSTRAINT 		BRANCH_PK 		PRIMARY KEY(BranchNum))
+;
+
+
+CREATE TABLE PUBLISHER 
+(PublisherCode CHAR(3),
+PublisherName CHAR(25),
+City CHAR(20),
+CONSTRAINT 		PUBLISHER_PK 		PRIMARY KEY(PublisherCode) )
+;
+
+CREATE TABLE Book 
+(BookCode CHAR(4),
+Title CHAR(40),
+PublisherCode CHAR(3),
+Type CHAR(3),
+Paperback CHAR(1),
+CONSTRAINT 		BOOK_PK 		PRIMARY KEY(BookCode),
+
+CONSTRAINT 		BOOK_FK  FOREIGN KEY(PublisherCode)
+						REFERENCES PUBLISHER(PublisherCode)
+							ON UPDATE NO ACTION
+							ON DELETE NO ACTION
+	
+	);
+
+
+ 
+
+
+CREATE TABLE Copy
+(BookCode CHAR(4),
+BranchNum DECIMAL(2,0),
+CopyNum DECIMAL(2,0),
+Quality CHAR(20),
+Price DECIMAL(8,2),
+CONSTRAINT COPY_PK		PRIMARY KEY (BookCode, BranchNum, CopyNum),
+
+CONSTRAINT 		COPY_BOOK_FK  FOREIGN KEY(BookCode)
+						REFERENCES BOOK(BookCode)
+							ON UPDATE NO ACTION
+							ON DELETE NO ACTION,
+	CONSTRAINT 		COPY_BRANCH_FK    FOREIGN KEY(BranchNum)
+						REFERENCES BRANCH(BranchNum)
+							ON UPDATE CASCADE
+							ON DELETE NO ACTION
+
+ )
+;
+
+
+CREATE TABLE Wrote 
+(BookCode CHAR(4),
+AuthorNum DECIMAL(2,0),
+Sequence DECIMAL(2,0),
+CONSTRAINT WROTE_PK		PRIMARY KEY (BookCode, AuthorNum),
+
+
+CONSTRAINT 		WROTE_BOOK_FK  FOREIGN KEY(BookCode)
+						REFERENCES BOOK(BookCode)
+							ON UPDATE NO ACTION
+							ON DELETE NO ACTION,
+	CONSTRAINT 		WROTE_AUTHOR_FK    FOREIGN KEY(AuthorNum)
+						REFERENCES AUTHOR(AuthorNum)
+							ON UPDATE CASCADE
+							ON DELETE NO ACTION
+
+ )
+;

@@ -1,0 +1,40 @@
+I used a simple fully connected feedforward neural network design in this problem.
+I made 3 layers -
+a) Layer 1(Input Layer) - 9 neurons or nodes ( 1 for each input)
+b) Layer 2(Hidden Layer) - 3 neurons or nodes (used the same as given in problem statement)
+c) Layer 3(Output Layer) - 1 node which outputs the probability of Waiting being YES
+
+Since neural networks need numerical input, we mapped the categorical features to numbers -
+Alt - 1 for Yes, 0 for No
+Bar - 1 for Yes, 0 for No
+Fri - 1 for Yes, 0 for No
+Pat - 1 for Full, 0.5 for Some, 0 for None
+Price - 1 for $$$, 0.5 for $$, 0 for $
+Rain - 1 for Yes, 0 for No
+Res - 1 for Yes, 0 for No
+Type - 1 for Thai, 0.6 for Italian, 0.3 for French, 0 for Burger
+Est - 1 for >60, 0.6 for 30-60, 0.3 for 10-30, 0 for 0-10
+Goal - 1 for Yes, 0 for No
+
+The final Weights obtained were -
+Weights for input layer
+[[-1.25546078 -0.78016659  0.710443  ]
+ [-0.61818748  1.08272318  0.44709786]
+ [ 0.78555147  1.73910644  3.75530701]
+ [-0.69373839 -1.3797941   2.57387495]
+ [ 1.55694662  2.65191544  2.34113749]
+ [ 2.85752625 -1.86995469 -1.06764822]
+ [ 0.8351914  -0.18360111  3.93061406]
+ [ 3.38988479  0.81239611 -0.9820659 ]
+ [ 1.26480379  3.42448305 -4.04534805]]
+
+Bias for input layer
+[[-0.21375459 -2.62981686 -1.35544396]]
+
+Weights for hidden layer
+[[-4.64152672]
+ [-7.82274178]
+ [ 8.19912757]]
+
+Bias for hidden layer
+[[ 0.3842789]]
